@@ -25,7 +25,7 @@ def get_cats_info(path: str) -> list:
                 {
                     "id": val.split(',')[0],
                     "name": val.split(',')[1],
-                    "age": val.split(',')[2]
+                    "age": int(val.split(',')[2])
                 }
                 for val in entries
                 ]
@@ -46,4 +46,4 @@ def get_cats_info(path: str) -> list:
     
     return list_cats
 
-print("get")
+print(get_cats_info("goit-pycore-hw-04\info_cats.txt"))
