@@ -18,7 +18,7 @@ def total_salary(path: str) -> tuple:
     загальну заробітну плату на кількість розробників
     """
     try:
-        
+
         with open(path, encoding="utf-8") as f:
             entries = f.readlines()
             common_salary = sum([int(val.split(',')[1]) for val in entries])
@@ -38,11 +38,13 @@ def total_salary(path: str) -> tuple:
         """
 
         print(str(ex) + " Ділення на нуль неможливе!")
+        return ()
     except BaseException as ex:
         """
         Обробляємо інші варіанти помилок
         """
         print(str(ex))
+        return ()
     
     """
     Повернімо кортеж із загальної та середньої заробітних плат
