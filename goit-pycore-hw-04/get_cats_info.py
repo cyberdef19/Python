@@ -45,3 +45,5 @@ def get_cats_info(path: str) -> list:
         return []
     
     return list_cats
+
+print("get")
