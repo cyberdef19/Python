@@ -17,11 +17,32 @@ def total_salary(path: str) -> tuple:
     Також, визначимо середню заробітну плату, розділивши
     загальну заробітну плату на кількість розробників
     """
-    
-    with open(path, encoding="utf-8") as f:
-        entries = f.readlines()
-        common_salary = sum([int(val.split(',')[1]) for val in entries])
-        average_salary = common_salary / len(entries)
+    try:
+        
+        with open(path, encoding="utf-8") as f:
+            entries = f.readlines()
+            common_salary = sum([int(val.split(',')[1]) for val in entries])
+            average_salary = common_salary / len(entries)
+
+    except FileNotFoundError as ex:
+        """
+        Якщо файл відсутній, кидаємо виключення FileNotFoundError
+        """
+
+        print(str(ex) + " Файл відсутній")
+        return ()
+    except ZeroDivisionError as ex:
+        """
+        Якщо у файлі з розробниками немає списку імен, відбудеться ділення на нуль
+        записів. Відповідно обробляємо дану ситуацію.
+        """
+
+        print(str(ex) + " Ділення на нуль неможливе!")
+    except BaseException as ex:
+        """
+        Обробляємо інші варіанти помилок
+        """
+        print(str(ex))
     
     """
     Повернімо кортеж із загальної та середньої заробітних плат
@@ -29,6 +50,6 @@ def total_salary(path: str) -> tuple:
     
     return (common_salary, average_salary)
 
-print(total_salary("goit-pycore-hw-04\developers_salary.txt"))
+print(total_salary(""))
         
         
