@@ -5,8 +5,7 @@ from assistant_core.commands.hello_cmd import hello_cmd
 from assistant_core.commands.show_phone import show_phone
 from assistant_core.utils.parse_input import parse_input
 
-if __name__ == "__main__":
-
+def main():
     contacts = {}
 
     while True:
@@ -18,15 +17,15 @@ if __name__ == "__main__":
                     print("Пока. Закінчуємо роботу програми!")
                     break
                 case "hello":
-                    hello_cmd()
+                    print(hello_cmd())
                 case "add":
                     name, phone = args
-                    add_contact(name, phone, contacts)
+                    print(add_contact(name, phone, contacts))
                 case "change":
                     name, phone = args
-                    change_contact(name, phone, contacts)
+                    print(change_contact(name, phone, contacts))
                 case "all":
-                    all_info(contacts)
+                    print(all_info(contacts))
                 case "phone":
                     name = args
                     show_phone(name, contacts)
@@ -36,5 +35,8 @@ if __name__ == "__main__":
             print(str(ex))
         except BaseException as ex:
             print(str(ex))
-                    
+                        
+
+if __name__ == "__main__":
+  main()
 

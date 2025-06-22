@@ -12,3 +12,4 @@ def show_phone(name: str, users: dict):
         print("Номер телефону " + name + ": " + users[name])
     else:
         print("Немає такого користувача в системі")
+    

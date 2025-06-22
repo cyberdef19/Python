@@ -5,7 +5,7 @@ name: str - ім'я користувача
 phone: str - номер телефона користувача
 users: dict - словник користувачів з номерами телефонів
 
-return: -
+return: str - рядок про успіх зміни даних користувача
 """
 
 def change_contact(name: str, phone: str, users: dict):
@@ -23,4 +23,4 @@ def change_contact(name: str, phone: str, users: dict):
         return
     
     users[name] = phone
-    print("Contact changed")
+    return "Контакт змінено"

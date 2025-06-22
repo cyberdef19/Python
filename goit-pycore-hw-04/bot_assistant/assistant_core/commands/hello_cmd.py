@@ -3,4 +3,4 @@
 """
 
 def hello_cmd():
-    print("How can I help you?")
+    return "How can I help you?"
