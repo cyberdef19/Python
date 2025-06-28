@@ -10,7 +10,7 @@
             "request": "launch",
             "program": "${file}",
             "console": "integratedTerminal",
-            "args": ["C:\\Users\\Олексій Ієвенко\\Documents\\MySite"]
+            "args": ["goit-pycore-hw-05\\logs.txt", "info"]
         }
     ]
 }
