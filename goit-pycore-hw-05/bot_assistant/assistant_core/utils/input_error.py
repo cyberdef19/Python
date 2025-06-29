@@ -58,14 +58,15 @@ def input_error(func):
                         raise ValueError("Параметр для іменованого аргументу users не може бути None!")
                     if func.__name__ == "add_contact":
                         if kwargs["name"] in kwargs["users"].keys():
-                            raise ValueError("Таке ім'я у словнику вже є!")
+                            raise KeyError("Таке ім'я у словнику вже є!")
                     if func.__name__ == "change_contact":
                         if kwargs["name"] not in kwargs["users"].keys():
-                            raise ValueError("Такого імені у словнику немає!")
+                            raise KeyError("Такого імені у словнику немає!")
             return func(*args, **kwargs)
                     
         except ValueError as ex:
-            print(str(ex))
-
+            return str(ex)
+        except KeyError as ex:
+            return str(ex)
     return inner
 
