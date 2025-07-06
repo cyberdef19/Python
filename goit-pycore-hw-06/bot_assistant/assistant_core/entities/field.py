@@ -1,3 +1,8 @@
+from assistant_core.entities.phone import Phone
+from assistant_core.entities.birthday import Birthday
+from datetime import datetime
+import re
+
 """
 Клас Field визначає поле для запису книги телефонів
 
@@ -5,6 +10,7 @@
 """
 
 class Field:
+    pattern_phone = "\d{10}"
     
     def __init__(self, value: any):
         self.value = value
@@ -32,4 +38,13 @@ class Field:
     
     @get_value.setter
     def set_value(self, value: any) -> None:
-        self.value = value
+        try:
+            if isinstance(value, Phone):
+                re.match(Field.get_value, value)
+            if isinstance(value, datetime):
+                datetime.strptime(value, "%d.%M.Y")
+            self.value = value
+        except ValueError:
+            raise ValueError("Не валідне значення поля")
+        
+        
