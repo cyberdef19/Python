@@ -1,3 +1,6 @@
+from datetime import datetime
+import re
+
 """
 Клас Field визначає поле для запису книги телефонів
 
@@ -32,4 +35,10 @@ class Field:
     
     @get_value.setter
     def set_value(self, value: any) -> None:
-        self.value = value
+        try:
+            if isinstance(value, datetime):
+                datetime.strptime(value, "%d.%M.Y")
+            self.value = value
+        except ValueError:
+            raise ValueError("Не валідне значення поля")
+        

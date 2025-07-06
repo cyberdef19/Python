@@ -1,5 +1,6 @@
 from assistant_core.utils.input_error import input_error
-
+from assistant_core.entities.address_book import AddressBook
+from assistant_core.entities.record import Record
 """
 Функція show_phone - виводить номер телефона заданого користувача
 
@@ -10,10 +11,9 @@ return: str - повертає рядок, що сповіщує про успі
 """
 
 @input_error
-def show_phone(name: str = None, users: dict = None):
-    if name in users.keys():
-        print("Номер телефону " + name + ": " + users[name])
-    else:
-        print("Немає такого користувача в системі")
+def show_phone(name: str = None, contacts: AddressBook = None):
+    contact = contacts.find(name=name)
+    for phone in contact.phones:
+        print(phone)
     return "Успішно перелічено усі номери телефонів юзерів"
     

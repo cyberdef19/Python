@@ -1,5 +1,6 @@
 from assistant_core.entities.name import Name
 from assistant_core.entities.phone import Phone
+from assistant_core.entities.birthday import Birthday
 import re
 
 """
@@ -14,6 +15,7 @@ class Record:
     def __init__(self, name: str):
         self.name = Name(name)
         self.phones = []
+        self.birthday = None
         
     """
     Властивість get_name дозволяє повернути значення імені контакта 
@@ -28,6 +30,14 @@ class Record:
     @property
     def get_phones(self):
         return self.phones
+    
+    @property
+    def get_birthday(self):
+        return self.birthday
+    
+    def add_birthday(self, date_str: str) -> None:
+        oBirthday = Birthday(date_str)
+        self.birthday = oBirthday
     
 
     """
@@ -57,11 +67,11 @@ class Record:
     """
         
     def add_phone(self, phone: str) ->None:
-        if self.__check_phone(phone):
+        #if self.__check_phone(phone):
             self.phone = Phone(phone)
             self.phones.append(self.phone)
-        else:
-            print("Не можу додати телефон. Він не валідний")
+        #else:
+        #    print("Не можу додати телефон. Він не валідний")
             
     """
     Метод remove_phone для видалення номера телефону

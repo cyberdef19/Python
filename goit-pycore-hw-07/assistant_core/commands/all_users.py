@@ -1,4 +1,5 @@
 from assistant_core.utils.input_error import input_error
+from assistant_core.entities.address_book import AddressBook
 
 """
 Функція all_info виводить усі імена користувачів та усі номера телефонів
@@ -9,8 +10,8 @@ return: str - рядок про успіх виведення інформаці
 """
 
 @input_error
-def all_info(users: dict = None):
+def all_info(contacts: AddressBook = None):
     print("Усі записи словника")
-    for name, phone in users.items():
-        print(name + ": " + phone)
+    for name, record in contacts.data.items():
+        print(record)
     return "Успішний вивід інформації"

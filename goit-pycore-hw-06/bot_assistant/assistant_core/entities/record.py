@@ -1,6 +1,5 @@
 from assistant_core.entities.name import Name
 from assistant_core.entities.phone import Phone
-from assistant_core.entities.birthday import Birthday
 import re
 
 """
@@ -15,7 +14,7 @@ class Record:
     def __init__(self, name: str):
         self.name = Name(name)
         self.phones = []
-        self.birthday = None
+        
         
     """
     Властивість get_name дозволяє повернути значення імені контакта 
@@ -31,13 +30,6 @@ class Record:
     def get_phones(self):
         return self.phones
     
-    @property
-    def get_birthday(self):
-        return self.birthday
-    
-    def add_birthday(self, date_str: str) -> None:
-        oBirthday = Birthday(date_str)
-        self.birthday = oBirthday
     """
     Магічний метод __str__ повертає рядкове значення 
     для об'єкта, що описує читабельно об'єкт
