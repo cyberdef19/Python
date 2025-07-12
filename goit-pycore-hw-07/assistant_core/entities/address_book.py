@@ -2,6 +2,7 @@ from collections import UserDict
 from assistant_core.entities.record import Record
 from datetime import datetime
 
+
 """
 Клас AddressBook спадкоємець скласа UserDict
 
@@ -9,6 +10,7 @@ from datetime import datetime
 
 class AddressBook(UserDict):
     
+        
     """
     Метод aad_record додає запис до книги контактів
     

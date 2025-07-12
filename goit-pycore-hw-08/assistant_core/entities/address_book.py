@@ -1,6 +1,7 @@
 from collections import UserDict
 from assistant_core.entities.record import Record
 from datetime import datetime
+import pickle
 
 """
 Клас AddressBook спадкоємець скласа UserDict
@@ -8,6 +9,41 @@ from datetime import datetime
 """
 
 class AddressBook(UserDict):
+    
+    """
+    Функція serialize_contacts серіалізує стан об'єкта self
+    зберігаючи його дані у файл address_book.dat
+    
+    Аргументи:
+    filename: str - шлях до файлу у вигляді рядка
+    
+    """
+    
+    def serialize_contacts(self, filename: str) -> None:
+        with open(filename, "wb") as f:
+            pickle.dump(self, f)
+    
+    """
+    Метод deserialize_contacts - статичний метод для десеріалізації об'єкта 
+    з файла address_book.dat. Метод є статичним, бо не залежить від стану 
+    об'єкта та не залежить від змінних класу і об'єкта, але повертає
+    десеріалізований об'єкт книги контактів
+    
+    Аргументи:
+    filename: str - шлях до файлу з серіалізованим об'єктом
+    
+    return: AddressBook  - повертає об'єкт типу AddressBook
+    """
+    
+    @staticmethod
+    def deserialize_contacts(filename: str):
+        try:
+            with open(filename, "rb") as f:
+                contacts = pickle.load(f)
+        except FileNotFoundError as ex:
+            print(str(ex))
+            return []
+        return contacts
     
     """
     Метод aad_record додає запис до книги контактів

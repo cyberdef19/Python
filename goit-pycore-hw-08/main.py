@@ -8,10 +8,17 @@ from assistant_core.commands.add_birthday import add_birthday
 from assistant_core.commands.birthdays import birthdays
 from assistant_core.commands.show_birthday import show_birthday
 from assistant_core.entities.address_book import AddressBook
+import pathlib
 
 
 def main():
-    contacts = AddressBook()
+    
+    filename = "address_book.dat"
+    path = pathlib.Path(filename)
+    if path.exists():
+        contacts = AddressBook.deserialize_contacts(filename=filename)
+    else:
+        contacts = AddressBook()
     
     while True:
         user_input = input("Введіть команду з аргументами: ")
@@ -19,6 +26,7 @@ def main():
         try:
             match cmd:
                 case "close" | "exit":
+                    contacts.serialize_contacts(filename=filename)
                     print("Пока. Закінчуємо роботу програми!")
                     break
                 case "hello":
